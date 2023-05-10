@@ -1,5 +1,8 @@
 import { Component } from "react";
 import { nanoid } from 'nanoid';
+import {ContactForm} from "../ContactForm/ContactForm";
+import { Filter } from "../Filter/Filter";
+import { ContactList } from "../ContactList/ContactList";
 
 export class Phonebook extends Component {
     state = {
@@ -60,56 +63,13 @@ export class Phonebook extends Component {
         return (
             <div>
                 <h1>Phonebook</h1>
-                <form action="form" onSubmit={this.addContact}>
-                    <label>
-                    Name
-                        <input
-                            type="text"
-                            name="name"
-                            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                            required
-                        />
-                    </label>
-
-                    <label>
-                        Number
-                        <input
-                            type="tel"
-                            name="number"
-                            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                            required
-                        />
-                    </label>
-
-                    <button type="submit">Додати контакт</button>
-                </form>
+                <ContactForm addContact={this.addContact}/>
 
                 <h2>Contacts</h2>
-                <label>
-                    Name
-                        <input
-                            type="text"
-                            name="filter"
-                            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                            onChange={this.onFilter}
-                            value={this.state.filter}
-                            required
-                        />
-                    </label>
+                <Filter onFilter={this.onFilter} filterValue={this.state.filter} />
+
                 <ul>
-                    {this.state.filter !== "" && <>
-                        {this.getContacts().map(el => (
-                            <li key={el.id}>
-                                <p>{el.name}{el.number}</p>
-                                <button data-id={el.id} type="button" onClick={this.deleteContact}>delete</button>
-                            </li>
-                        )
-                        )}
-                    </>
-                    }
+                    <ContactList filterValue={this.state.filter} getContacts={this.getContacts()} deleteContact={this.deleteContact}/>
                 </ul>
         </div>
         )
