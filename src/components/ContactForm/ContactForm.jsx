@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import cssContForm from "./ContactForm.module.css";
 
 export function ContactForm ({addContact}) {
     return (
-                <form action="form" onSubmit={addContact}>
+                <form action="form" onSubmit={addContact} className={cssContForm.form}>
                     <label>
                     Name
                         <input

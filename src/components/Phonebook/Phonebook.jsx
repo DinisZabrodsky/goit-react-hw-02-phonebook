@@ -4,6 +4,8 @@ import {ContactForm} from "../ContactForm/ContactForm";
 import { Filter } from "../Filter/Filter";
 import { ContactList } from "../ContactList/ContactList";
 
+import cssPhone from "./Phonebook.module.css";
+
 export class Phonebook extends Component {
     state = {
         contacts: [
@@ -36,7 +38,6 @@ export class Phonebook extends Component {
             contacts: [...prev.contacts, newContact]
             })
         ) 
-        console.log(this.state)
     }
 
     onFilter = ({target: {value}}) => {
@@ -61,7 +62,7 @@ export class Phonebook extends Component {
 
     render() {
         return (
-            <div>
+            <div className={cssPhone.conteiner}>
                 <h1>Phonebook</h1>
                 <ContactForm addContact={this.addContact}/>
 

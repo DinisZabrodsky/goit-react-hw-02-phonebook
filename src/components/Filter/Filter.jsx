@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import cssFilter from "./Filter.module.css";
 
 export function Filter ({onFilter, filterValue}) {
     return (
-        <label>
+        <label className={cssFilter.find}>
         Name
             <input
                 type="text"
