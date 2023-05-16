@@ -1,10 +1,14 @@
 import PropTypes from "prop-types";
 // import cssContList from "./ContactList.module.css";
 
-export function ContactList ({filterValue, getContacts, deleteContact}) {
+export function ContactList ({formContacts, filterValue, getContacts, deleteContact}) {
     return (
-        filterValue !== "" &&
-            getContacts.map(el => (
+        filterValue === "" ? formContacts.map(el => (
+            <li key={el.id}>
+                <p>{el.name}{el.number}</p>
+                <button data-id={el.id} type="button" onClick={deleteContact}>delete</button>
+            </li>
+        )) : getContacts.map(el => (
                 <li key={el.id}>
                     <p>{el.name}{el.number}</p>
                     <button data-id={el.id} type="button" onClick={deleteContact}>delete</button>
